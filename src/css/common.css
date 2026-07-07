@@ -3,8 +3,12 @@ body {
 }
 
 .app {
+  width: 100%;
   min-height: 100vh;
+  margin: 0 auto;
   padding-bottom: 80px;
+  background: #fff;
+  overflow: hidden;
 }
 
 .header {
@@ -57,9 +61,11 @@ body {
 
 .bottom-nav {
   position: fixed;
-  left: 0;
+  left: 50%;
   bottom: 0;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 768px;
   height: 78px;
   background: #fff;
   border-top: 1px solid #eee;
@@ -92,4 +98,29 @@ body {
   line-height: 1;
   margin-top:2px;
   font-size:11px;
+}
+
+
+/* ===== Tablet ===== */
+@media (min-width: 768px) {
+  .app {
+    max-width: 900px;
+  }
+
+  .bottom-nav {
+    max-width: 900px;
+  }
+}
+
+
+/* ===== PC ===== */
+@media (min-width: 1024px) {
+  .app {
+    max-width: none;
+    padding-bottom: 0;
+  }
+
+  .bottom-nav {
+    display: none;
+  }
 }
