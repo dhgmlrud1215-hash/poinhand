@@ -8,7 +8,7 @@ body {
   margin: 0 auto;
   padding-bottom: 80px;
   background: #fff;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .header {
@@ -19,6 +19,11 @@ body {
   justify-content: space-between;
   background: #fff;
   border-bottom:1px solid #f1f1f1;
+}
+
+.home-section {
+  padding: 0 16px;
+  margin-top: 20px;
 }
 
 .logo img {
@@ -105,10 +110,16 @@ body {
 @media (min-width: 768px) {
   .app {
     max-width: 900px;
+    padding-bottom: 0;
   }
 
   .bottom-nav {
-    max-width: 900px;
+    display: none;
+  }
+
+   .home-section {
+    padding: 0 32px;
+    margin-top: 40px;
   }
 }
 
@@ -120,7 +131,9 @@ body {
     padding-bottom: 0;
   }
 
-  .bottom-nav {
-    display: none;
+  .home-section {
+    max-width: 1200px;
+    margin: 56px auto 0;
+    padding: 0 40px;
   }
 }

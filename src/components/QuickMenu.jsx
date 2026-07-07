@@ -9,7 +9,7 @@ function QuickMenu() {
   ];
 
   return (
-   <section>
+   <section className="quick-menu home-section">
     <h2>퀵메뉴</h2>
 
     <div className="quick-list">

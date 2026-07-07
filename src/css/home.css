@@ -49,12 +49,13 @@
 
 .quick-menu h2 {
   font-size: 18px;
-  margin: 30px 0;
+  margin: 18px 0;
 }
 
 .quick-list {
-  display: flex;
-  gap: 18px;
+  display:flex;
+  justify-content: space-between;
+  gap: 15px;
   overflow-x: auto;
 }
 
@@ -89,10 +90,58 @@
   white-space: pre-line;
 }
 
+@media (min-width: 768px) {
+  .home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px;
+    column-gap: 32px;
+    width: 100%;
+    margin: 40px 0 0;
+    padding: 0 clamp(20px, 3vw, 48px) 0 32px;
+    box-sizing: border-box;
+  }
 
+  .home-content {
+    min-width: 0;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .quick-menu {
+    position: sticky;
+    grid-column: 2;
+    grid-row: 1;
+
+    justify-self: end;
+    align-self: start;
+
+    top: 90px;
+    width: 120px;
+    padding: 0;
+    margin: 0;
+    z-index: 20;
+
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+  }
+
+  .quick-menu h2 {
+  text-align: center;
+  }
+
+  .quick-list {
+    flex-direction: column;
+    gap: 18px;
+    overflow: visible;
+  }
+}
 
 
 @media (min-width: 1024px) {
+  .home-layout {
+    padding-left: 40px;
+  }
+
   .main-banner {
     --banner-gap: 10px;
     --banner-slide-width: min(820px, 66vw);

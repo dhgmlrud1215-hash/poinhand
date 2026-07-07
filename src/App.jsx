@@ -11,7 +11,13 @@ function App() {
     <div className="app">
       <Header />
       <Mainbanner />
-      <QuickMenu />
+
+      <div className="home-layout">
+        <QuickMenu />
+        <main className="home-content">
+
+        </main>
+      </div>
       <BottomNav />
     </div>
   );
