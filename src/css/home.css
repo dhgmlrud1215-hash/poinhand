@@ -56,7 +56,7 @@
 .quick-list {
   display:flex;
   justify-content: space-between;
-  gap: 15px;
+  gap: 10px;
   overflow-x: auto;
 }
 
@@ -92,7 +92,231 @@
 }
 
 /*===== HelpSection =========*/
+.filter-area {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
 
+.filter-area::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-area button {
+  flex: 0 0 auto;
+  padding: 8px 13px;
+  border: 1px solid #e5e5e5;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.filter-area button.active {
+  background: #ff8a3d;
+  border-color: #ff8a3d;
+  color: #fff;
+}
+
+.filter-option-box {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.filter-option-box::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-option-box button {
+  flex: 0 0 auto;
+  padding: 7px 12px;
+  border: 1px solid #ffd8c2;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.pet-list {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.pet-list::-webkit-scrollbar {
+  display: none;
+}
+
+.pet-card {
+  flex: 0 0 156px;
+  width: 156px;
+  min-width: 0;
+
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.pet-card img {
+  width: 156px;
+  height: 156px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.pet-card strong,
+.pet-card p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pet-card strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.pet-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+.animal-info-box {
+  padding: 24px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.animal-info-box h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.animal-summary {
+  margin-bottom: 24px;
+  color: #444;
+}
+
+.animal-detail-list div {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.animal-detail-list dt {
+  width: 70px;
+  color: #666;
+}
+
+.animal-detail-list dd {
+  margin: 0;
+  color: #222;
+}
+
+.animal-detail-list .point {
+  color: #ff8a3d;
+}
+
+.detail-note {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #444;
+}
+
+.animal-main-img {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.animal-gallery {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 32px;
+}
+
+.animal-main-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.status-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: #5ac85a;
+  color: #fff;
+  font-weight: 700;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 42%;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 36px;
+}
+
+.gallery-arrow.prev {
+  left: -56px;
+}
+
+.gallery-arrow.next {
+  right: -56px;
+}
+
+.image-count {
+  position: absolute;
+  left: 50%;
+  bottom: 88px;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 13px;
+}
+
+.animal-thumbs {
+  display: flex;
+  gap: 14px;
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+.animal-thumbs button {
+  flex: 0 0 90px;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+.animal-thumbs img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
 
 @media (min-width: 768px) {
   .home-layout {
