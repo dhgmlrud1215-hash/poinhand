@@ -9,6 +9,7 @@ import Mainbanner from "./components/Mainbanner";
 import QuickMenu from "./components/QuickMenu";
 import HelpSection from "./components/HelpSection";
 import AnimalDetail from "./pages/AnimalDetail";
+import ShelterBanner from "./components/ShelterBanner";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 <QuickMenu />
                 <main className="home-content">
                   <HelpSection />
+                  <ShelterBanner />
                 </main>
               </div>
             </>

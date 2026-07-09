@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-function PetFilter() {
+const initialFilters = {
+  지역: "모든 지역",
+  동물: "전체",
+  성별: "전체",
+  중성화: "전체",
+};
+
+function PetFilter({ selectedFilters, onChange }) {
   const [activeFilter, setActiveFilter] = useState("전체");
   const [openFilter, setOpenFilter] = useState(null);
 
@@ -31,6 +38,15 @@ function PetFilter() {
     중성화: ["전체", "완료", "미완료", "확인중"],
   };
 
+  const getFilterLabel = (filter) => {
+    if (filter === "전체") return filter;
+
+    const selected = selectedFilters[filter];
+    const isDefault = selected === "전체" || selected === "모든 지역";
+
+    return isDefault ? filter : `${filter}: ${selected}`;
+  };
+
   return (
     <>
       <div className="filter-area">
@@ -43,13 +59,14 @@ function PetFilter() {
               setActiveFilter(filter);
 
               if (filter === "전체") {
+                onChange(initialFilters);
                 setOpenFilter(null);
               } else {
                 setOpenFilter(openFilter === filter ? null : filter);
               }
             }}
           >
-            {filter} {filter !== "전체" && "▾"}
+            {getFilterLabel(filter)} {filter !== "전체" && "▾"}
           </button>
         ))}
       </div>
@@ -57,7 +74,18 @@ function PetFilter() {
       {openFilter && filterOptions[openFilter] && (
         <div className="filter-option-box">
           {filterOptions[openFilter].map((option) => (
-            <button type="button" key={option}>
+            <button
+              type="button"
+              key={option}
+              className={selectedFilters[openFilter] === option ? "active" : ""}
+              onClick={() => {
+                onChange({
+                  ...selectedFilters,
+                  [openFilter]: option,
+                });
+                setOpenFilter(null);
+              }}
+            >
               {option}
             </button>
           ))}
