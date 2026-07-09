@@ -10,6 +10,7 @@ import QuickMenu from "./components/QuickMenu";
 import HelpSection from "./components/HelpSection";
 import AnimalDetail from "./pages/AnimalDetail";
 import ShelterBanner from "./components/ShelterBanner";
+import Youtubestory from "./components/YoutubeStory";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                 <main className="home-content">
                   <HelpSection />
                   <ShelterBanner />
+                  <Youtubestory />
                 </main>
               </div>
             </>
