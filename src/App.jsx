@@ -8,11 +8,14 @@ import Header from "./components/Header";
 import Mainbanner from "./components/Mainbanner";
 import QuickMenu from "./components/QuickMenu";
 import HelpSection from "./components/HelpSection";
-import AnimalDetail from "./pages/AnimalDetail";
-import CulturePage from "./pages/CulturePage";
 import ShelterBanner from "./components/ShelterBanner";
 import Youtubestory from "./components/YoutubeStory";
 import AdoptionCulture from "./components/AdoptionCulture";
+
+import AnimalDetail from "./pages/AnimalDetail";
+import CulturePage from "./pages/CulturePage";
+import NewsList from "./pages/NewsList";
+import NewsDetail from "./pages/NewsDetail";
 
 function App() {
   return (
@@ -28,6 +31,7 @@ function App() {
 
               <div className="home-layout">
                 <QuickMenu />
+
                 <main className="home-content">
                   <HelpSection />
                   <ShelterBanner />
@@ -40,9 +44,24 @@ function App() {
         />
 
         <Route path="/animal/:id" element={<AnimalDetail />} />
-        <Route path="/campaign" element={<CulturePage category="campaign" />} />
-        <Route path="/donation" element={<CulturePage category="donation" />} />
-        <Route path="/volunteer" element={<CulturePage category="volunteer" />} />
+
+        <Route
+          path="/campaign"
+          element={<CulturePage category="campaign" />}
+        />
+
+        <Route
+          path="/donation"
+          element={<CulturePage category="donation" />}
+        />
+
+        <Route
+          path="/volunteer"
+          element={<CulturePage category="volunteer" />}
+        />
+
+        <Route path="/news" element={<NewsList />} />
+        <Route path="/news/:id" element={<NewsDetail />} />
       </Routes>
 
       <BottomNav />
