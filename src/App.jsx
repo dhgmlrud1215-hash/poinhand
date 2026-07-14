@@ -11,6 +11,7 @@ import HelpSection from "./components/HelpSection";
 import ShelterBanner from "./components/ShelterBanner";
 import Youtubestory from "./components/YoutubeStory";
 import AdoptionCulture from "./components/AdoptionCulture";
+import NewsSection from "./components/NewsSection";
 
 import AnimalDetail from "./pages/AnimalDetail";
 import CulturePage from "./pages/CulturePage";
@@ -37,6 +38,7 @@ function App() {
                   <ShelterBanner />
                   <Youtubestory />
                   <AdoptionCulture />
+                  <NewsSection />
                 </main>
               </div>
             </>
