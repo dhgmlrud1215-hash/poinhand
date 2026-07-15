@@ -3,14 +3,14 @@ import { newsData } from "../data/news";
 
 function NewsSection() {
   const featuredNews = newsData
-    .filter((item) => item.images?.length > 0)
+    .filter((item) => item.images?.[0]?.includes("/images/news/news"))
     .slice(0, 2);
 
   return (
     <section className="news-section home-section">
       <div className="section-title">
         <h2>포인핸드 소식</h2>
-        <Link to="/news">더보기</Link>
+        <Link to="/news" className="more-btn">전체보기</Link>
       </div>
 
       <div className="news-list">

@@ -29,9 +29,16 @@ function NewsList() {
 
       <div className="news-list">
         {filteredNews.map((item) => (
-          <Link to={`/news/${item.id}`} key={item.id}>
-            <span>{item.category}</span>
-            <h2>{item.title}</h2>
+          <Link
+            to={`/news/${item.id}`}
+            className="news-list-card"
+            key={item.id}
+          >
+            <div className="news-list-info">
+              <span>{item.category}</span>
+              <h2>{item.title}</h2>
+              <p>{item.content.filter(Boolean).join(" ")}</p>
+            </div>
           </Link>
         ))}
       </div>
