@@ -4,7 +4,7 @@ function ShelterMap({ shelters }) {
   const mapRef = useRef(null);
   const appKey = import.meta.env.VITE_KAKAO_MAP_KEY;
   const [error, setError] = useState(
-    appKey ? "" : "지도 키를 불러오지 못했습니다. 개발 서버를 다시 시작해 주세요."
+    appKey ? "" : "카카오 지도 키가 현재 배포 환경에 설정되지 않았습니다."
   );
 
   useEffect(() => {
@@ -90,19 +90,41 @@ function ShelterMap({ shelters }) {
     }
 
     if (existingScript) {
-      existingScript.addEventListener("load", createMap);
+      if (window.kakao?.maps) {
+        createMap();
+        return;
+      }
+
+      const handleExistingScriptLoad = () => {
+        if (window.kakao?.maps) {
+          createMap();
+        } else {
+          setError("카카오 지도 인증에 실패했습니다. 배포 도메인과 JavaScript 키를 확인해 주세요.");
+        }
+      };
+
+      existingScript.addEventListener("load", handleExistingScriptLoad, {
+        once: true,
+      });
 
       return () => {
-        existingScript.removeEventListener("load", createMap);
+        existingScript.removeEventListener("load", handleExistingScriptLoad);
       };
     }
 
     const script = document.createElement("script");
 
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${appKey}&autoload=false&libraries=services`;
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${appKey}&autoload=false`;
     script.async = true;
     script.dataset.kakaoMap = "true";
-    script.addEventListener("load", createMap);
+    const handleScriptLoad = () => {
+      if (window.kakao?.maps) {
+        createMap();
+      } else {
+        setError("카카오 지도 인증에 실패했습니다. 배포 도메인과 JavaScript 키를 확인해 주세요.");
+      }
+    };
+    script.addEventListener("load", handleScriptLoad);
     const handleScriptError = () => {
       setError("지도를 불러오지 못했습니다. 카카오 JavaScript 키와 등록 도메인을 확인해 주세요.");
     };
@@ -111,7 +133,7 @@ function ShelterMap({ shelters }) {
     document.head.appendChild(script);
 
     return () => {
-      script.removeEventListener("load", createMap);
+      script.removeEventListener("load", handleScriptLoad);
       script.removeEventListener("error", handleScriptError);
     };
   }, [appKey, shelters]);
