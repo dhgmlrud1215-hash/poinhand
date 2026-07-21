@@ -27,8 +27,8 @@ function HamburgerMenu({ isOpen, onClose }) {
       path: "/lost",
     },
     {
-      title: "포인핸드 스토리",
-      path: "/story",
+      title: "커뮤니티",
+      path: "/community",
     },
     {
       title: "스토어",

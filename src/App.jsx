@@ -5,6 +5,7 @@ import "./css/shelter.css";
 import "./css/shelterBanner.css";
 import "./css/animalstate.css";
 import "./css/lost.css";
+import "./css/community.css";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -27,6 +28,8 @@ import NewsList from "./pages/NewsList";
 import NewsDetail from "./pages/NewsDetail";
 import Shelters from "./pages/Shelters";
 import LostReport  from "./pages/LostReport";
+import Community from "./pages/Community";
+import CommunityDetail from "./pages/CommunityDetail";
 
 function App() {
   return (
@@ -78,6 +81,8 @@ function App() {
         <Route path="/news/:id" element={<NewsDetail />} />
         <Route path="/shelters" element={<Shelters />} />
         <Route path="/lost" element={<LostReport />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/community/:id" element={<CommunityDetail />} />
       </Routes>
 
       <Footer />

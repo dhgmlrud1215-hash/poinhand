@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function BottomNav() {
   return (
@@ -31,10 +31,14 @@ function BottomNav() {
         <span>실종/제보</span>
       </NavLink>
 
-      <button>
+      <NavLink 
+        to="/community"
+        className={({ isActive }) => (isActive ? "active" : "")}
+        onClick={() => window.scrollTo(0, 0)}
+      >
         <img className="nav-icon" src="/icons/story.svg" alt="" />
         <span>커뮤니티</span>
-      </button>
+      </NavLink>
 
       <button>
         <img className="nav-icon" src="/icons/my.svg" alt="" />

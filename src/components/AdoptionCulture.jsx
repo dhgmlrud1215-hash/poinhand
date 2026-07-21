@@ -16,12 +16,17 @@ function AdoptionCulture() {
     setActiveTab(key);
   };
 
+  const moreLink =
+    activeTab === "volunteer"
+      ? "/community?main=도움이 필요해요&sub=이동 봉사"
+      : `/${activeTab}`;
+
   return (
     <section className="culture-section home-section">
       <div className="section-title">
         <h2>함께 만드는 입양 문화</h2>
 
-        <Link to={`/${activeTab}`} className="more-btn">
+        <Link to={moreLink} className="more-btn">
           전체보기
         </Link>
       </div>
