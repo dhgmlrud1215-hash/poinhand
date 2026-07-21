@@ -65,164 +65,156 @@ function CommunityDetail() {
           </span>
         </div>
 
-        <div className="community-detail-top">
+        <div className="community-detail-layout">
+          <div className="community-detail-left-column">
+            <section className="community-detail-gallery">
+              {images.length > 0 ? (
+                <div className="community-detail-main-image">
+                  <img
+                    src={images[currentImageIndex]}
+                    alt={`${post.title} 이미지 ${currentImageIndex + 1}`}
+                  />
 
-          <section className="community-detail-gallery">
-            {images.length > 0 ? (
-              <div className="community-detail-main-image">
-                <img
-                  src={images[currentImageIndex]}
-                  alt={`${post.title} 이미지 ${currentImageIndex + 1}`}
-                />
+                  {images.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        className="gallery-button gallery-prev"
+                        onClick={handlePrevImage}
+                        aria-label="이전 이미지"
+                      >
+                        ‹
+                      </button>
 
-                {images.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      className="gallery-button gallery-prev"
-                      onClick={handlePrevImage}
-                      aria-label="이전 이미지"
-                    >
-                      ‹
-                    </button>
+                      <button
+                        type="button"
+                        className="gallery-button gallery-next"
+                        onClick={handleNextImage}
+                        aria-label="다음 이미지"
+                      >
+                        ›
+                      </button>
+                    </>
+                  )}
 
-                    <button
-                      type="button"
-                      className="gallery-button gallery-next"
-                      onClick={handleNextImage}
-                      aria-label="다음 이미지"
-                    >
-                      ›
-                    </button>
-                  </>
-                )}
-
-                <span className="gallery-count">
-                  {currentImageIndex + 1} / {images.length}
-                </span>
-              </div>
-            ) : (
-              <div className="community-detail-no-image">
-                등록된 이미지가 없습니다.
-              </div>
-            )}
-          </section>
-
-          <section className="community-detail-content">
-            <span className="community-detail-category">
-              {post.subCategory}
-            </span>
-
-            <h1>{post.title}</h1>
-
-            <p className="community-detail-description">
-              {post.content}
-            </p>
-
-            {post.appLink && (
-              <a
-                href={post.appLink}
-                target="_blank"
-                rel="noreferrer"
-                className="community-app-link"
-              >
-                포인핸드 앱에서 보기
-              </a>
-            )}
-          </section>
-        </div>
-
-        {post.animalNotice && (
-          <section className="community-notice-section">
-            <h2>공고 정보</h2>
-
-            <div className="community-notice-card">
-              {post.animalNotice.image && (
-                <img
-                  src={post.animalNotice.image}
-                  alt={post.animalNotice.species}
-                  className="community-notice-image"
-                  onError={(event) => {
-                    event.currentTarget.src = post.images?.[0] || "/images/community/default-profile.jpg";
-                  }}
-                />
-              )}
-
-              <div className="community-notice-content">
-                <div className="community-notice-badges">
-                  <span className="notice-status">
-                    {post.animalNotice.status}
-                  </span>
-
-                  <span className="notice-gender">
-                    {post.animalNotice.gender}
+                  <span className="gallery-count">
+                    {currentImageIndex + 1} / {images.length}
                   </span>
                 </div>
+              ) : (
+                <div className="community-detail-no-image">
+                  등록된 이미지가 없습니다.
+                </div>
+              )}
+            </section>
 
-                <dl>
-                  <div>
-                    <dt>품종</dt>
-                    <dd>{post.animalNotice.species}</dd>
-                  </div>
+            {post.animalNotice && (
+              <section className="community-notice-section">
+                <h2>공고 정보</h2>
 
-                  <div>
-                    <dt>공고번호</dt>
-                    <dd>{post.animalNotice.noticeNumber}</dd>
-                  </div>
+                <div className="community-notice-card">
+                  {post.animalNotice.image && (
+                    <img
+                      src={post.animalNotice.image}
+                      alt={post.animalNotice.species}
+                      className="community-notice-image"
+                      onError={(event) => {
+                        event.currentTarget.src =
+                          post.images?.[0] ||
+                          "/images/community/default-profile.jpg";
+                      }}
+                    />
+                  )}
 
-                  <div>
-                    <dt>등록날짜</dt>
-                    <dd>{post.animalNotice.registeredDate}</dd>
-                  </div>
+                  <div className="community-notice-content">
+                    <div className="community-notice-badges">
+                      <span className="notice-status">
+                        {post.animalNotice.status}
+                      </span>
+                      <span className="notice-gender">
+                        {post.animalNotice.gender}
+                      </span>
+                    </div>
 
-                  <div>
-                    <dt>구조장소</dt>
-                    <dd>{post.animalNotice.foundPlace}</dd>
+                    <dl>
+                      <div><dt>품종</dt><dd>{post.animalNotice.species}</dd></div>
+                      <div><dt>공고번호</dt><dd>{post.animalNotice.noticeNumber}</dd></div>
+                      <div><dt>등록날짜</dt><dd>{post.animalNotice.registeredDate}</dd></div>
+                      <div><dt>구조장소</dt><dd>{post.animalNotice.foundPlace}</dd></div>
+                    </dl>
                   </div>
-                </dl>
+                </div>
+              </section>
+            )}
+
+            {post.shelter && (
+              <section className="community-shelter-section">
+                <h2>보호소 정보</h2>
+
+                <div className="community-shelter-card">
+                  <img
+                    src={
+                      post.shelter.image ||
+                      "/images/community/shelter-default.png"
+                    }
+                    alt=""
+                  />
+                  <div>
+                    <strong>{post.shelter.name}</strong>
+                    <p>{post.shelter.region}</p>
+                  </div>
+                </div>
+              </section>
+            )}
+          </div>
+
+          <div className="community-detail-right-column">
+            <section className="community-detail-content">
+              <span className="community-detail-category">
+                {post.subCategory}
+              </span>
+
+              <h1>{post.title}</h1>
+
+              {post.content && (
+                <p className="community-detail-description">
+                  {post.content}
+                </p>
+              )}
+
+              {post.appLink && (
+                <a
+                  href={post.appLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="community-app-link"
+                >
+                  포인핸드 앱에서 보기
+                </a>
+              )}
+            </section>
+
+            {post.detailSections?.length > 0 && (
+              <div className="community-detail-sections">
+                {post.detailSections.map((section) => (
+                  <section
+                    className="community-detail-section"
+                    key={section.title}
+                  >
+                    <h3>{section.title}</h3>
+                    <p>{section.content}</p>
+                  </section>
+                ))}
               </div>
+            )}
+
+            <div className="community-detail-stats">
+              <span>좋아요 {post.likes}</span>
+              <span>공유 {post.shares}</span>
+              <span>조회 {post.views}</span>
+              <span>댓글 {post.comments}</span>
             </div>
-          </section>
-        )}
-
-        {post.shelter && (
-          <section className="community-shelter-section">
-            <h2>보호소 정보</h2>
-
-            <div className="community-shelter-card">
-              <img
-                src={
-                  post.shelter.image ||
-                  "/images/community/shelter-default.png"
-                }
-                alt=""
-              />
-
-              <div>
-                <strong>{post.shelter.name}</strong>
-                <p>{post.shelter.region}</p>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {post.detailSections?.map((section) => (
-          <section
-            className={`community-detail-section${
-              section.title === "기본 정보" ? " community-detail-basic-info" : ""
-            }`}
-            key={section.title}
-          >
-            <h3>{section.title}</h3>
-            <p>{section.content}</p>
-          </section>
-        ))}
-
-        <div className="community-detail-stats">
-          <span>좋아요 {post.likes}</span>
-          <span>공유 {post.shares}</span>
-          <span>조회 {post.views}</span>
-          <span>댓글 {post.comments}</span>
+          </div>
         </div>
       </div>
     </main>
