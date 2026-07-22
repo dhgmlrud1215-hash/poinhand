@@ -30,6 +30,8 @@ import Shelters from "./pages/Shelters";
 import LostReport  from "./pages/LostReport";
 import Community from "./pages/Community";
 import CommunityDetail from "./pages/CommunityDetail";
+import RescueStoryDetail from "./pages/RescueStoryDetail";
+import RescueStoryList from "./pages/RescueStoryList";
 
 function App() {
   return (
@@ -82,6 +84,11 @@ function App() {
         <Route path="/shelters" element={<Shelters />} />
         <Route path="/lost" element={<LostReport />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/rescue-stories" element={<RescueStoryList />} />
+        <Route
+          path="/community/:id/rescue-story"
+          element={<RescueStoryDetail />}
+        />
         <Route path="/community/:id" element={<CommunityDetail />} />
       </Routes>
 

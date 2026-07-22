@@ -106,7 +106,7 @@ function CulturePage({ category }) {
           activeData.items.map((item) => (
             <article className="volunteer-card" key={item.id}>
               <div className="volunteer-top">
-                <strong>{item.nickname}</strong>
+                <strong>{item.author?.nickname || item.nickname}</strong>
                 <span>{getTimeAgo(item.createdAt)}</span>
               </div>
 
@@ -127,7 +127,10 @@ function CulturePage({ category }) {
               <p>{item.content}</p>
 
               {item.image && (
-                <img src={item.image} alt="봉사활동 게시글 이미지" />
+                <img
+                  src={Array.isArray(item.image) ? item.image[0] : item.image}
+                  alt="봉사활동 게시글 이미지"
+                />
               )}
             </article>
           ))}

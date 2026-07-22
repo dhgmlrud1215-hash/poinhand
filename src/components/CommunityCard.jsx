@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { getTimeAgo } from "../utils/getTimeAgo";
 
 function StatIcon({ type, filled = false }) {
   if (type === "heart") {
@@ -92,7 +93,7 @@ function CommunityCard({ item, onLike, onView }) {
 
         
         <span className="community-card-time">
-          {item.timeText}
+          {getTimeAgo(item.createdAt, item.timeText)}
         </span>
       </div>
 

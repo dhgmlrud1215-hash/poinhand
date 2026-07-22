@@ -10,12 +10,33 @@ const COMMUNITY_CATEGORIES = {
   "도움이 필요해요": [
     "전체",
     "입양 홍보",
-    "임시보호 요청",
+    "임보요청",
     "이동 봉사",
     "봉사 모집",
   ],
   "포인핸드 정보": ["전체", "입양 가이드", "앱 이용정보", "소식"],
 };
+
+const RELATIVE_TIME_UNITS = {
+  분: 60 * 1000,
+  시간: 60 * 60 * 1000,
+  일: 24 * 60 * 60 * 1000,
+};
+
+function getPostTimestamp(post, referenceTime) {
+  const createdAt = Date.parse(post.createdAt);
+  if (!Number.isNaN(createdAt)) return createdAt;
+
+  const relativeTime = post.timeText?.match(/^(\d+)\s*(분|시간|일)\s*전$/);
+
+  if (relativeTime) {
+    const [, amount, unit] = relativeTime;
+    return referenceTime - Number(amount) * RELATIVE_TIME_UNITS[unit];
+  }
+
+  const displayedDate = Date.parse(post.timeText);
+  return Number.isNaN(displayedDate) ? -Infinity : displayedDate;
+}
 
 function getInitialPosts() {
   try {
@@ -28,6 +49,25 @@ function getInitialPosts() {
   } catch {
     return communityData;
   }
+}
+
+function syncPostsWithCommunityData(currentPosts) {
+  const currentPostsById = new Map(
+    currentPosts.map((post) => [post.id, post]),
+  );
+
+  return communityData.map((item) => {
+    const currentPost = currentPostsById.get(item.id);
+
+    if (!currentPost) return item;
+
+    return {
+      ...item,
+      likes: currentPost.likes,
+      views: currentPost.views,
+      liked: currentPost.liked,
+    };
+  });
 }
 
 function Community() {
@@ -46,6 +86,7 @@ function Community() {
   const [mainCategory, setMainCategory] = useState(initialMainCategory);
   const [subCategory, setSubCategory] = useState(initialSubCategory);
   const [posts, setPosts] = useState(getInitialPosts);
+  const [sortReferenceTime] = useState(() => Date.now());
 
   const handleMainCategory = (category) => {
     setMainCategory(category);
@@ -54,7 +95,8 @@ function Community() {
 
   const updatePostStats = (id, update) => {
     setPosts((currentPosts) => {
-      const nextPosts = currentPosts.map((post) =>
+      const syncedPosts = syncPostsWithCommunityData(currentPosts);
+      const nextPosts = syncedPosts.map((post) =>
         post.id === id ? update(post) : post,
       );
 
@@ -85,14 +127,23 @@ function Community() {
     }));
   };
 
-  const filteredData = posts.filter((item) => {
-    const mainCategoryMatch = item.mainCategory === mainCategory;
+  const availablePosts = syncPostsWithCommunityData(posts);
 
-    const subCategoryMatch =
-      subCategory === "전체" || item.subCategory === subCategory;
+  const filteredData = availablePosts
+    .filter((item) => {
+      const mainCategoryMatch = item.mainCategory === mainCategory;
 
-    return mainCategoryMatch && subCategoryMatch;
-  });
+      const subCategoryMatch =
+        subCategory === "전체" || item.subCategory === subCategory;
+
+      return mainCategoryMatch && subCategoryMatch;
+    })
+    .sort((a, b) => {
+      const aTimestamp = getPostTimestamp(a, sortReferenceTime);
+      const bTimestamp = getPostTimestamp(b, sortReferenceTime);
+
+      return bTimestamp - aTimestamp || b.id - a.id;
+    });
 
   return (
     <main className="community-page">

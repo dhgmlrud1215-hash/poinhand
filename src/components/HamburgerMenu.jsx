@@ -31,6 +31,10 @@ function HamburgerMenu({ isOpen, onClose }) {
       path: "/community",
     },
     {
+      title: "구조스토리",
+      path: "/rescue-stories",
+    },
+    {
       title: "스토어",
       path: "/store",
     },

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { communityData } from "../data/communityData";
+import { getTimeAgo } from "../utils/getTimeAgo";
 
 function CommunityDetail() {
 
@@ -42,6 +43,9 @@ function CommunityDetail() {
   return (
     <main className="community-detail-page">
       <div className="community-detail-inner">
+        <span className="community-detail-category">
+          {post.subCategory}
+        </span>
 
         <div className="community-detail-author">
           <img
@@ -61,9 +65,11 @@ function CommunityDetail() {
           </div>
 
           <span className="community-detail-time">
-            {post.timeText}
+            {getTimeAgo(post.createdAt, post.timeText)}
           </span>
         </div>
+
+        <h1 className="community-detail-mobile-title">{post.title}</h1>
 
         <div className="community-detail-layout">
           <div className="community-detail-left-column">
@@ -170,16 +176,42 @@ function CommunityDetail() {
 
           <div className="community-detail-right-column">
             <section className="community-detail-content">
-              <span className="community-detail-category">
-                {post.subCategory}
-              </span>
-
               <h1>{post.title}</h1>
 
               {post.content && (
                 <p className="community-detail-description">
                   {post.content}
                 </p>
+              )}
+
+              {post.rescueStory && (
+                <Link
+                  to={`/community/${post.id}/rescue-story`}
+                  className="community-rescue-story"
+                >
+                  <span className="community-rescue-story-label">
+                    구조스토리
+                  </span>
+
+                  <div className="community-rescue-story-card">
+                    <img
+                      src={post.rescueStory.image}
+                      alt={post.rescueStory.title}
+                      onError={(event) => {
+                        event.currentTarget.src =
+                          "/images/community/default-profile.jpg";
+                      }}
+                    />
+
+                    <div className="community-rescue-story-content">
+                      <strong>{post.rescueStory.title}</strong>
+
+                      {post.rescueStory.description && (
+                        <p>{post.rescueStory.description}</p>
+                      )}
+                    </div>
+                  </div>
+                </Link>
               )}
 
               {post.appLink && (

@@ -7,8 +7,11 @@ function AdoptionCulture() {
   const [activeTab, setActiveTab] = useState("campaign");
 
   const activeData = cultureData[activeTab];
-  const visibleItems =
-    activeData.type === "campaign"
+  const visibleItems = activeData.type === "volunteer"
+    ? [...activeData.items]
+        .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+        .slice(0, 2)
+    : activeData.type === "campaign"
       ? activeData.items.slice(0, 2)
       : activeData.items;
 
@@ -96,7 +99,7 @@ function AdoptionCulture() {
               key={item.id}
             >
               <div className="volunteer-top">
-                <strong>{item.nickname}</strong>
+                <strong>{item.author?.nickname || item.nickname}</strong>
                 <span>{getTimeAgo(item.createdAt)}</span>
               </div>
 
@@ -118,7 +121,7 @@ function AdoptionCulture() {
 
               {item.image && (
                 <img
-                  src={item.image}
+                  src={Array.isArray(item.image) ? item.image[0] : item.image}
                   alt="봉사활동 게시글 이미지"
                 />
               )}

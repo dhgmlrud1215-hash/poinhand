@@ -1,8 +1,17 @@
-export function getTimeAgo(createAt) {
-  const createdTime = new Date(createAt).getTime();
+export function getTimeAgo(createdAt, fallback = "") {
+  const createdTime = new Date(createdAt).getTime();
+
+  if (Number.isNaN(createdTime)) {
+    return fallback;
+  }
+
   const currentTime = Date.now();
 
   const diffSeconds = Math.floor((currentTime - createdTime) / 1000);
+
+  if (diffSeconds < 0) {
+    return new Date(createdAt).toLocaleDateString("ko-KR");
+  }
 
   if (diffSeconds < 60) {
     return "방금 전";
@@ -26,5 +35,5 @@ export function getTimeAgo(createAt) {
     return `${diffDays}일 전`;
   }
 
-  return new Date(createAt).toLocaleDateString("ko-KR");
+  return new Date(createdAt).toLocaleDateString("ko-KR");
 }
