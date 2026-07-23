@@ -1,14 +1,47 @@
 import { Link } from "react-router-dom";
 import {
+  BadgeCheck,
+  CircleHelp,
+  ClipboardPenLine,
+  Mail,
+  Megaphone,
+  MessageSquareText,
+  PawPrint,
+  UserRound,
+} from "lucide-react";
+import {
   myMenus,
   myQuickMenus,
   serviceMenus,
   snsMenus,
 } from "../../data/memberData";
 
+const iconComponents = {
+  membership: BadgeCheck,
+  adoption: ClipboardPenLine,
+  message: Mail,
+  login: UserRound,
+  pets: PawPrint,
+  notice: Megaphone,
+  help: CircleHelp,
+  sms: MessageSquareText,
+};
+
 function MenuIcon({ item }) {
+  if (item.iconKey) {
+    const Icon = iconComponents[item.iconKey];
+
+    return (
+      <Icon
+        className="mypage-vector-icon"
+        strokeWidth={1.9}
+        aria-hidden="true"
+      />
+    );
+  }
+
   if (item.icon) {
-    return <img src={item.icon} alt="" />;
+    return <img className="mypage-brand-icon" src={item.icon} alt="" />;
   }
 
   return (
@@ -61,7 +94,7 @@ function MyPage() {
         <div className="mypage-quick-list">
           {myQuickMenus.map((menu) => (
             <Link className="mypage-quick-item" to={menu.path} key={menu.id}>
-              <img src={menu.icon} alt="" />
+              <MenuIcon item={menu} />
               <span>{menu.title}</span>
             </Link>
           ))}

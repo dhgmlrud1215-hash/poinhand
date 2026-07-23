@@ -20,19 +20,19 @@ export const myQuickMenus = [
   {
     id: 1,
     title: "멤버십",
-    icon: "/icons/my.svg",
+    iconKey: "membership",
     path: "/mypage/membership",
   },
   {
     id: 2,
     title: "입양신청",
-    icon: "/icons/story.svg",
+    iconKey: "adoption",
     path: "/mypage/adoption",
   },
   {
     id: 3,
     title: "쪽지함",
-    icon: "/icons/menu.svg",
+    iconKey: "message",
     path: "/mypage/messages",
   },
 ];
@@ -41,13 +41,13 @@ export const myMenus = [
   {
     id: 1,
     title: "로그인",
-    icon: "/icons/my.svg",
+    iconKey: "login",
     path: "/login",
   },
   {
     id: 2,
     title: "관심 유기동물",
-    icon: "/icons/shelter.svg",
+    iconKey: "pets",
     path: "/mypage/favorites",
   },
 ];
@@ -56,19 +56,19 @@ export const serviceMenus = [
   {
     id: 1,
     title: "공지사항",
-    symbol: "ⓘ",
+    iconKey: "notice",
     path: "/news",
   },
   {
     id: 2,
     title: "자주하는 질문",
-    symbol: "?",
+    iconKey: "help",
     path: "/faq",
   },
   {
     id: 3,
     title: "문의하기",
-    symbol: "□",
+    iconKey: "sms",
     path: "/contact",
   },
 ];

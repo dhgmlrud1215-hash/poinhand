@@ -251,6 +251,9 @@
 }
 
 .mypage-page {
+  --mypage-icon-size: 28px;
+  --mypage-menu-font-size: 16px;
+  --mypage-menu-font-weight: 500;
   width: min(100%, 768px);
   min-height: calc(100vh - 60px);
   margin: 0 auto;
@@ -296,16 +299,26 @@
   border-radius: 20px;
   background: #fff4df;
   color: #222;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.mypage-quick-item img,
+.mypage-quick-item svg {
+  width: 36px;
+  height: 36px;
+  padding: 1px;
+  object-fit: contain;
 }
 
 .mypage-quick-item img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
   filter: invert(57%) sepia(88%) saturate(1872%) hue-rotate(351deg)
     brightness(104%) contrast(101%);
+}
+
+.mypage-quick-item svg {
+  color: #f49327;
 }
 
 .mypage-main .mypage-menu-section {
@@ -315,7 +328,9 @@
 .mypage-menu-section h2 {
   margin-bottom: 22px;
   color: #111;
-  font-size: 24px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
 }
 
 .mypage-menu-list {
@@ -331,21 +346,34 @@
   color: #222;
 }
 
-.mypage-menu-row > img {
-  width: 30px;
-  height: 30px;
+.mypage-menu-row > img,
+.mypage-menu-row > svg {
+  display: block;
+  width: var(--mypage-icon-size);
+  height: var(--mypage-icon-size);
+  padding: 1px;
+  justify-self: center;
   object-fit: contain;
-  opacity: 0.62;
-  filter: grayscale(1);
+}
+
+.mypage-menu-row > img {
+  opacity: 0.68;
+  filter: grayscale(1) contrast(0.82);
+}
+
+.mypage-menu-row > svg {
+  color: #666;
 }
 
 .mypage-menu-row > span:not(.mypage-menu-symbol) {
-  font-size: 17px;
+  font-size: var(--mypage-menu-font-size);
+  font-weight: var(--mypage-menu-font-weight);
+  line-height: 1.4;
 }
 
 .mypage-menu-row > strong {
-  color: #444;
-  font-size: 31px;
+  color: #555;
+  font-size: 28px;
   font-weight: 300;
   line-height: 1;
   text-align: right;
@@ -355,11 +383,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: var(--mypage-icon-size);
+  height: var(--mypage-icon-size);
+  justify-self: center;
   color: #666;
-  font-size: 23px;
-  font-weight: 500;
+  font-size: 21px;
+  font-weight: 400;
   line-height: 1;
 }
 
@@ -434,9 +463,10 @@
     font-size: 14px;
   }
 
-  .mypage-quick-item img {
-    width: 34px;
-    height: 34px;
+  .mypage-quick-item img,
+  .mypage-quick-item svg {
+    width: 32px;
+    height: 32px;
   }
 
   .mypage-main .mypage-menu-section {
@@ -445,7 +475,7 @@
 
   .mypage-menu-section h2 {
     margin-bottom: 14px;
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .mypage-menu-row {
@@ -455,13 +485,14 @@
   }
 
   .mypage-menu-row > img,
+  .mypage-menu-row > svg,
   .mypage-menu-symbol {
-    width: 27px;
-    height: 27px;
+    width: var(--mypage-icon-size);
+    height: var(--mypage-icon-size);
   }
 
   .mypage-menu-row > span:not(.mypage-menu-symbol) {
-    font-size: 16px;
+    font-size: var(--mypage-menu-font-size);
   }
 
   .mypage-divider {
